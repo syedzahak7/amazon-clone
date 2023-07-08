@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../provider/cartprovider.dart';
 
 class ShopDetailScreen extends StatefulWidget {
   const ShopDetailScreen({super.key, required this.name, required this.price, required this.imageUrls});
   final String name;
   final double price;
   final List<String> imageUrls;
-  static String route() => '/shop_detail';
+  static const routname='/detail';
 
   @override
   State<ShopDetailScreen> createState() => _ShopDetailScreenState();
 }
 
 class _ShopDetailScreenState extends State<ShopDetailScreen> {
-  int _quantity = 0;
+  int _quantity = 1;
   bool _iscollected = false;
 
   @override
@@ -23,6 +26,8 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
           CustomScrollView(
             slivers: [
               SliverAppBar(
+                title: Text(widget.name),
+                backgroundColor: Theme.of(context).primaryColor,
                 pinned: true,
                 expandedHeight: MediaQuery.sizeOf(context).height*.25,
                 leading: IconButton(
@@ -60,7 +65,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
               ),
             ],
           ),
-          _buldFloatBar()
+          _buldFloatBar(context)
         ],
       ),
     );
@@ -150,7 +155,7 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
                   child: Image.asset(
                       'images/minus@2x.png', scale: 2),
                   onTap: () {
-                    if (_quantity <= 0) return;
+                    if (_quantity <= 1) return;
                     setState(() => _quantity -= 1);
                   },
                 ),
@@ -174,7 +179,8 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
     );
   }
 
-  Widget _buldFloatBar() {
+  Widget _buldFloatBar(BuildContext context) {
+    final provider=Provider.of<CartProvider>(context);
     buildAddCard() =>
         Container(
           height: 58,
@@ -195,14 +201,17 @@ class _ShopDetailScreenState extends State<ShopDetailScreen> {
             child: InkWell(
               borderRadius: const BorderRadius.all(Radius.circular(29)),
               // splashColor: const Color(0xFFEEEEEE),
-              onTap: () {},
-              child: Row(
+              onTap: () {
+                provider.addCart(widget.imageUrls[0], widget.name, widget.price, _quantity);
+
+              },
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                  // Image.asset('images/bag@2x.png', scale: 2),
                   Icon(Icons.shopping_bag,color: Colors.white,),
-                  const SizedBox(width: 16),
-                  const Text(
+                  SizedBox(width: 16),
+                  Text(
                     'Add to Cart',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

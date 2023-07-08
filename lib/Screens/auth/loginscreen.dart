@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class LoginSignUpPage extends StatefulWidget {
   LoginSignUpPage(this.haveacount);
  final bool haveacount;
+ static const routname='/login';
   @override
   _LoginSignUpPageState createState() => _LoginSignUpPageState();
 }

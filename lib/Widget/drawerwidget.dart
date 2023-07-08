@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
+import '../Screens/orderscreen.dart';
 import '../Screens/profilescreen.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
 
-  Widget buildMenuItem(String text, BuildContext context) {
+  Widget buildMenuItem(String text,GestureTapCallback onTap ,BuildContext context) {
+
     return ListTile(
       title: Text(
         text,
         style: const TextStyle(color: Colors.black, fontSize: 15),
       ),
-      onTap: () {
-        // Handle menu item click here
-      },
+      onTap: onTap,
     );
   }
 
@@ -23,16 +23,16 @@ class DrawerWidget extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             accountName: const Text(
-              'Mr. X',
+              'John Doe',
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
+                fontSize: 25,
               ),
             ),
             accountEmail: null, // Set accountEmail to null if not needed
             currentAccountPicture: GestureDetector(
-              onTap:()=> Navigator.push(context, MaterialPageRoute(builder: (_)=>ProfilePage())),
+              onTap:()=> Navigator.of(context).pushNamed(ProfilePage.routname),
               child: const Hero(
                 tag: 'profile',
                 child: CircleAvatar(
@@ -47,14 +47,17 @@ class DrawerWidget extends StatelessWidget {
           Expanded(
             child: ListView(
               children: [
-                buildMenuItem('Home', context),
-                buildMenuItem('Shop by Category', context),
-                buildMenuItem('Our Orders', context),
-                buildMenuItem('Buy Again', context),
-                buildMenuItem('Your Wishlist', context),
-                buildMenuItem('Your Account', context),
-                buildMenuItem('Amazon Pay', context),
-                buildMenuItem('Prime', context),
+                buildMenuItem('Home',(){} ,context),
+                buildMenuItem('Shop by Category',(){} ,context),
+                buildMenuItem('Our Orders',(){
+                  Navigator.of(context).pushNamed(OrderScreen.routname);
+
+                }, context),
+                buildMenuItem('Buy Again',(){}, context),
+                buildMenuItem('Your Wishlist',(){}, context),
+                buildMenuItem('Your Account',(){}, context),
+                buildMenuItem('Amazon Pay',(){}, context),
+                buildMenuItem('Prime',(){}, context),
               ],
             ),
           ),

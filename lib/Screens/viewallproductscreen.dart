@@ -6,6 +6,7 @@ import '../provider/productprovider.dart';
 
 class ViewAllScreen extends StatelessWidget {
    ViewAllScreen({super.key, required this.appbar});
+   static const routname='/viewall';
 final String appbar;
 int length=0;
   @override

@@ -69,7 +69,8 @@ class homeWidget extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => SpecialOfferScreen()));
+                  Navigator.of(context).pushNamed(SpecialOfferScreen.routename);
+
                 },
                 child: Text('View All', style: TextStyle(color: Colors.grey)),
               ),

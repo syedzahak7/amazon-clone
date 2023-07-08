@@ -8,7 +8,7 @@ class SpecialOfferScreen extends StatefulWidget {
   @override
   State<SpecialOfferScreen> createState() => _SpecialOfferScreenState();
 
-  static String route() => '/special_offers';
+  static String routename = '/special_offers';
 }
 
 class _SpecialOfferScreenState extends State<SpecialOfferScreen> {

@@ -1,3 +1,4 @@
+import 'package:amazon_clone/Screens/cartscreen.dart';
 import 'package:amazon_clone/Widget/appbaricon.dart';
 import 'package:amazon_clone/Widget/drawerwidget.dart';
 import 'package:amazon_clone/Widget/homeWidget.dart';
@@ -62,6 +63,7 @@ setState(() {
 
              Image.asset('images/pngegg.png',scale: 1,width: 170,height: 70,),
               IconButton(onPressed: () {
+                Navigator.of(context).pushNamed(CartScreen.routname);
               },
                   icon:const Icon(Icons.shopping_cart,size: 35,color: Colors.white,)),
             ],
