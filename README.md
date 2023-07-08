@@ -1,6 +1,8 @@
 # amazon_clone
 
 A new Flutter project.
+# Output
+![Orange and Blue Modern Web Developer Facebook Ad](https://github.com/syedzahak7/amazon-clone/assets/96736424/86f9a378-0c3b-4de8-8fce-bb7dca79cba6)
 
 ## Getting Started
 
